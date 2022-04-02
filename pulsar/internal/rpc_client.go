@@ -61,6 +61,8 @@ type RPCClient interface {
 	RequestOnCnxNoWait(cnx Connection, cmdType pb.BaseCommand_Type, message proto.Message) error
 
 	RequestOnCnx(cnx Connection, requestID uint64, cmdType pb.BaseCommand_Type, message proto.Message) (*RPCResult, error)
+
+	DisconnectBroker() error
 }
 
 type rpcClient struct {
@@ -83,6 +85,16 @@ func NewRPCClient(serviceURL *url.URL, serviceNameResolver ServiceNameResolver, 
 		log:                 logger.SubLogger(log.Fields{"serviceURL": serviceURL}),
 		metrics:             metrics,
 	}
+}
+
+func (c *rpcClient) DisconnectBroker() error {
+	host, err := c.serviceNameResolver.ResolveHost()
+	if err != nil {
+		c.log.WithError(err).Errorf("rpc client failed to resolve host")
+		return err
+	}
+
+	return c.pool.RemoveConnection(host)
 }
 
 func (c *rpcClient) RequestToAnyBroker(requestID uint64, cmdType pb.BaseCommand_Type,

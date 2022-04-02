@@ -33,6 +33,9 @@ type ConnectionPool interface {
 	// GetConnection get a connection from ConnectionPool.
 	GetConnection(logicalAddr *url.URL, physicalAddr *url.URL) (Connection, error)
 
+	// RemoveConnection removes a connection from ConnectionPool.
+	RemoveConnection(logicalAddr *url.URL) error
+
 	// Close all the connections in the pool
 	Close()
 }
@@ -67,6 +70,20 @@ func NewConnectionPool(
 		log:                   logger,
 		metrics:               metrics,
 	}
+}
+
+func (p *connectionPool) RemoveConnection(logicalAddr *url.URL) error {
+	key := p.getMapKey(logicalAddr)
+
+	p.Lock()
+	defer p.Unlock()
+
+	conn, found := p.connections[key]
+	if found {
+		conn.Close()
+	}
+
+	return nil
 }
 
 func (p *connectionPool) GetConnection(logicalAddr *url.URL, physicalAddr *url.URL) (Connection, error) {

@@ -130,9 +130,12 @@ func (ls *lookupService) Lookup(topic string) (*LookupResult, error) {
 	ls.log.Debugf("Got topic{%s} lookup response: %+v", topic, res)
 
 	for i := 0; i < lookupResultMaxRedirect; i++ {
+		if ls.handleAuthChange(res) {
+			continue
+		}
+
 		lr := res.Response.LookupTopicResponse
 		switch *lr.Response {
-
 		case pb.CommandLookupTopicResponse_Redirect:
 			logicalAddress, physicalAddr, err := ls.getBrokerAddress(lr)
 			if err != nil {
@@ -183,6 +186,15 @@ func (ls *lookupService) Lookup(topic string) (*LookupResult, error) {
 	return nil, errors.New("exceeded max number of redirection during topic lookup")
 }
 
+func (ls *lookupService) handleAuthChange(res *RPCResult) bool {
+	if res.Response.AuthChallenge != nil {
+		ls.log.Debugf("Disconnect the broker to re-authentication")
+		_ = ls.rpcClient.DisconnectBroker()
+		return true
+	}
+	return false
+}
+
 func (ls *lookupService) GetPartitionedTopicMetadata(topic string) (*PartitionedTopicMetadata,
 	error) {
 	ls.metrics.PartitionedTopicMetadataRequestsCount.Inc()
@@ -201,6 +213,14 @@ func (ls *lookupService) GetPartitionedTopicMetadata(topic string) (*Partitioned
 		return nil, err
 	}
 	ls.log.Debugf("Got topic{%s} partitioned metadata response: %+v", topic, res)
+
+	authRequired := ls.handleAuthChange(res)
+
+	if res.Response.Error != nil {
+		return nil, errors.New(res.Response.GetError().String())
+	} else if authRequired {
+		return nil, errors.New("authentication changed")
+	}
 
 	var partitionedTopicMetadata PartitionedTopicMetadata
 
