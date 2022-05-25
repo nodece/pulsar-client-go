@@ -52,6 +52,7 @@ func TestNewAuthenticationBasicWithParams(t *testing.T) {
 	require.NoError(t, err)
 
 	body, err := ioutil.ReadAll(resp.Body)
+	_ = resp.Body.Close()
 	require.NoError(t, err)
 	require.Equal(t, []byte("Basic YWRtaW46MTIzNDU2"), body)
 }
