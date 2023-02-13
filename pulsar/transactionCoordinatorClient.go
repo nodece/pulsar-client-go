@@ -95,7 +95,7 @@ func (tc *transactionCoordinatorClient) close() {
 New a transactionImpl which can be used to guarantee exactly-once semantics.
 */
 func (tc *transactionCoordinatorClient) newTransaction(timeout time.Duration) (TxnID, error) {
-	_, err := tc.canSendRequest()
+	err := tc.canSendRequest()
 	if err != nil {
 		return TxnID{}, err
 	}
@@ -121,7 +121,7 @@ Register the partitions which published messages with the transactionImpl.
 And this can be used when ending the transactionImpl.
 */
 func (tc *transactionCoordinatorClient) addPublishPartitionToTxn(id TxnID, partitions []string) error {
-	_, err := tc.canSendRequest()
+	err := tc.canSendRequest()
 	if err != nil {
 		return err
 	}
@@ -142,7 +142,7 @@ Register the subscription which acked messages with the transactionImpl.
 And this can be used when ending the transactionImpl.
 */
 func (tc *transactionCoordinatorClient) addSubscriptionToTxn(id TxnID, topic string, subscription string) error {
-	_, err := tc.canSendRequest()
+	err := tc.canSendRequest()
 	if err != nil {
 		return err
 	}
@@ -167,7 +167,7 @@ func (tc *transactionCoordinatorClient) addSubscriptionToTxn(id TxnID, topic str
 Commit or abort the transactionImpl.
 */
 func (tc *transactionCoordinatorClient) endTxn(id TxnID, action pb.TxnAction) error {
-	_, err := tc.canSendRequest()
+	err := tc.canSendRequest()
 	if err != nil {
 		return err
 	}
@@ -186,17 +186,17 @@ func getTCAssignTopicName(partition uint64) string {
 	return TransactionCoordinatorAssign + "-partition-" + strconv.FormatUint(partition, 10)
 }
 
-func (tc *transactionCoordinatorClient) canSendRequest() (bool, error) {
+func (tc *transactionCoordinatorClient) canSendRequest() error {
 	if tc.blockIfReachMaxPendingOps {
 		if !tc.semaphore.Acquire(context.Background()) {
-			return false, newError(UnknownError, "Failed to acquire semaphore")
+			return newError(UnknownError, "Failed to acquire semaphore")
 		}
 	} else {
 		if !tc.semaphore.TryAcquire() {
-			return false, newError(ReachMaxPendingOps, "transaction_impl coordinator reach max pending ops")
+			return newError(ReachMaxPendingOps, "transaction_impl coordinator reach max pending ops")
 		}
 	}
-	return true, nil
+	return nil
 }
 
 func (tc *transactionCoordinatorClient) nextTCNumber() uint64 {
