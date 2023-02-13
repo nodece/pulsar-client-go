@@ -5,7 +5,7 @@ import (
 	"github.com/apache/pulsar-client-go/pulsar/internal"
 	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"github.com/apache/pulsar-client-go/pulsar/log"
-	"github.com/gogo/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 	"strconv"
 	"sync/atomic"
 	"time"
