@@ -83,8 +83,9 @@ Create a transaction coordinator client to send request
 */
 func createTcClient(t *testing.T) (*transactionCoordinatorClient, *client) {
 	c, err := NewClient(ClientOptions{
-		URL:                 "pulsar://localhost:6650",
-		IsEnableTransaction: true,
+		URL:                   webServiceURLTLS,
+		TLSTrustCertsFilePath: caCertsPath,
+		Authentication:        NewAuthenticationTLS(tlsClientCertPath, tlsClientKeyPath),
 	})
 	assert.NoError(t, err)
 	tcClient := newTransactionCoordinatorClientImpl(c.(*client))
