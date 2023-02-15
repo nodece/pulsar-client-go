@@ -51,6 +51,7 @@ until curl http://localhost:8080/metrics > /dev/null 2>&1 ; do sleep 1; done
 
 echo "-- Pulsar service is ready -- Configure permissions"
 
+$PULSAR_ADMIN tenants update public -r anonymous
 $PULSAR_ADMIN namespaces grant-permission public/default \
                         --actions produce,consume \
                         --role "anonymous"
