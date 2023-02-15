@@ -30,10 +30,8 @@ func TestTCClient(t *testing.T) {
 	topic := "my-topic"
 	sub := "my-sub"
 	tc, client := createTcClient(t)
-	defer client.Close()
-	defer tc.close()
 	//2. Prepare: create Topic and Subscription.
-	_, err := client.Subscribe(ConsumerOptions{
+	consumer, err := client.Subscribe(ConsumerOptions{
 		Topic:            topic,
 		SubscriptionName: sub,
 	})
@@ -76,6 +74,9 @@ func TestTCClient(t *testing.T) {
 	} else {
 		assert.Equal(t, err.Error(), "http error status code: 404")
 	}
+	defer consumer.Close()
+	defer tc.close()
+	defer client.Close()
 }
 
 /*
