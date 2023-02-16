@@ -88,10 +88,13 @@ func createTcClient(t *testing.T) (*transactionCoordinatorClient, *client) {
 		TLSTrustCertsFilePath: caCertsPath,
 		Authentication:        NewAuthenticationTLS(tlsClientCertPath, tlsClientKeyPath),
 	})
-	assert.NoError(t, err)
+	if err != nil {
+		t.Fatalf("Failed to create client due to %s", err.Error())
+	}
 	tcClient := newTransactionCoordinatorClientImpl(c.(*client))
-	err = tcClient.start()
-	assert.NoError(t, err)
+	if err = tcClient.start(); err != nil {
+		t.Fatalf("Failed to start transaction coordinator due to %s", err.Error())
+	}
 
 	return tcClient, c.(*client)
 }
