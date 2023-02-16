@@ -84,9 +84,9 @@ Create a transaction coordinator client to send request
 */
 func createTcClient(t *testing.T) (*transactionCoordinatorClient, *client) {
 	c, err := NewClient(ClientOptions{
-		URL:                   webServiceURLTLS,
-		TLSTrustCertsFilePath: caCertsPath,
-		Authentication:        NewAuthenticationTLS(tlsClientCertPath, tlsClientKeyPath),
+		URL: webServiceURL,
+		//TLSTrustCertsFilePath: caCertsPath,
+		//Authentication:        NewAuthenticationTLS(tlsClientCertPath, tlsClientKeyPath),
 	})
 	if err != nil {
 		t.Fatalf("Failed to create client due to %s", err.Error())
