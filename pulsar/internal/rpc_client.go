@@ -21,6 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"strconv"
 	"sync/atomic"
 	"time"
 
@@ -126,7 +127,7 @@ func (c *rpcClient) Request(logicalAddr *url.URL, physicalAddr *url.URL, request
 
 	ch := make(chan result, 1)
 	c.log.Info(fmt.Printf("Debug info: sending command %s by cnx %s %s, if closed %s\n", cmdType, cnx.ID(),
-		connectionState(cnx.(*connection).state.Load()).String(), cnx.(*connection).closed()))
+		connectionState(cnx.(*connection).state.Load()).String(), strconv.FormatBool(cnx.(*connection).closed())))
 	cnx.SendRequest(requestID, baseCommand(cmdType, message), func(response *pb.BaseCommand, err error) {
 		ch <- result{&RPCResult{
 			Cnx:      cnx,
