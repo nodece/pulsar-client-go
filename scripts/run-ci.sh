@@ -33,6 +33,6 @@ scripts/pulsar-test-service-start.sh
 
 go test -race -coverprofile=/tmp/coverage -timeout=20m -v ./...
 go tool cover -html=/tmp/coverage -o coverage.html
-
-scripts/pulsar-test-service-stop.sh
+#
+#scripts/pulsar-test-service-stop.sh
 

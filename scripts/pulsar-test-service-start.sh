@@ -34,7 +34,7 @@ else
     docker build -t ${IMAGE_NAME} .
 
     docker kill pulsar-client-go-test || true
-    docker run -d --rm --name pulsar-client-go-test \
+    docker run -d --name pulsar-client-go-test \
                 -p 8080:8080 \
                 -p 6650:6650 \
                 -p 8443:8443 \
