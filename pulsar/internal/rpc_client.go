@@ -19,6 +19,7 @@ package internal
 
 import (
 	"errors"
+	"fmt"
 	"net/url"
 	"sync/atomic"
 	"time"
@@ -118,12 +119,14 @@ func (c *rpcClient) Request(logicalAddr *url.URL, physicalAddr *url.URL, request
 	cmdType pb.BaseCommand_Type, message proto.Message) (*RPCResult, error) {
 	c.metrics.RPCRequestCount.Inc()
 	cnx, err := c.pool.GetConnection(logicalAddr, physicalAddr)
+	c.log.Info(fmt.Printf("Debug info: logicalAddr %s, physicalAddr %s\n", logicalAddr, physicalAddr))
 	if err != nil {
 		return nil, err
 	}
 
 	ch := make(chan result, 1)
-
+	c.log.Info(fmt.Printf("Debug info: sending command %s by cnx %s %s, if closed %s\n", cmdType, cnx.ID(),
+		connectionState(cnx.(*connection).state.Load()).String(), cnx.(*connection).closed()))
 	cnx.SendRequest(requestID, baseCommand(cmdType, message), func(response *pb.BaseCommand, err error) {
 		ch <- result{&RPCResult{
 			Cnx:      cnx,
