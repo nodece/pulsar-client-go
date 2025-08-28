@@ -30,11 +30,11 @@ import (
 	"path"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 
-	"github.com/apache/pulsar-client-go/pulsar/auth"
+	"github.com/nodece/pulsar-client-go/pulsar/auth"
 
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/nodece/pulsar-client-go/pulsar/log"
 
 	"github.com/pkg/errors"
 )

@@ -24,8 +24,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/apache/pulsar-client-go/oauth2"
-	"github.com/apache/pulsar-client-go/oauth2/store"
+	"github.com/nodece/pulsar-client-go/oauth2"
+	"github.com/nodece/pulsar-client-go/oauth2/store"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

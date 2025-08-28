@@ -26,7 +26,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/hamba/avro/v2"

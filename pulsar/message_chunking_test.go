@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
 
 	"google.golang.org/protobuf/proto"
 

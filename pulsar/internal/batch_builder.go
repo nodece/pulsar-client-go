@@ -23,10 +23,10 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal/compression"
-	"github.com/apache/pulsar-client-go/pulsar/internal/crypto"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/nodece/pulsar-client-go/pulsar/internal/compression"
+	"github.com/nodece/pulsar-client-go/pulsar/internal/crypto"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsar/log"
 )
 
 // BatcherBuilderProvider defines func which returns the BatchBuilder.

@@ -19,10 +19,10 @@
 
 -->
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/apache/pulsar-client-go)](https://pkg.go.dev/github.com/apache/pulsar-client-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/apache/pulsar-client-go)](https://goreportcard.com/report/github.com/apache/pulsar-client-go)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/nodece/pulsar-client-go)](https://pkg.go.dev/github.com/nodece/pulsar-client-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/nodece/pulsar-client-go)](https://goreportcard.com/report/github.com/nodece/pulsar-client-go)
 [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
-[![LICENSE](https://img.shields.io/hexpm/l/pulsar.svg)](https://github.com/apache/pulsar-client-go/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/hexpm/l/pulsar.svg)](https://github.com/nodece/pulsar-client-go/blob/master/LICENSE)
 
 # Apache Pulsar Go Client Library
 
@@ -42,7 +42,7 @@ CGo-based library.
 
 ## Status
 
-Check the Projects page at https://github.com/apache/pulsar-client-go/projects for
+Check the Projects page at https://github.com/nodece/pulsar-client-go/projects for
 tracking the status and the progress.
 
 ## Usage
@@ -50,7 +50,7 @@ tracking the status and the progress.
 Import the client library:
 
 ```go
-import "github.com/apache/pulsar-client-go/pulsar"
+import "github.com/nodece/pulsar-client-go/pulsar"
 ```
 
 Create a Producer:
@@ -182,12 +182,12 @@ Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/L
 If you've upgraded from a previous version of this library, you may run into an 'ambiguous import' error when building.
 
 ```
-github.com/apache/pulsar-client-go/oauth2: ambiguous import: found package github.com/apache/pulsar-client-go/oauth2 in multiple modules
+github.com/nodece/pulsar-client-go/oauth2: ambiguous import: found package github.com/nodece/pulsar-client-go/oauth2 in multiple modules
 ```
 
 The fix for this is to make sure you don't have any references in your `go.mod` file to the old oauth2 module path. So remove any lines
 similar to the following, and then run `go mod tidy`.
 
 ```
-github.com/apache/pulsar-client-go/oauth2 v0.0.0-20220630195735-e95cf0633348 // indirect
+github.com/nodece/pulsar-client-go/oauth2 v0.0.0-20220630195735-e95cf0633348 // indirect
 ```

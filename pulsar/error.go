@@ -20,7 +20,7 @@ package pulsar
 import (
 	"fmt"
 
-	proto "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
+	proto "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
 )
 
 // Result used to represent pulsar processing is an alias of type int.

@@ -29,7 +29,7 @@ In these instructions, I'm referring to an fictitious release `0.X.0`. Change th
 It is recommended to create a fresh clone of the repository to avoid any local files interfering in the process:
 
 ```
-git clone https://github.com/apache/pulsar-client-go.git
+git clone https://github.com/nodece/pulsar-client-go.git
 cd pulsar-client-go
 git checkout -b branch-0.X.0 origin/master
 ```
@@ -99,7 +99,7 @@ Please review and vote on the release candidate #1 for the version 0.X.0, as fol
 This is the first release candidate for Apache Pulsar Go client, version 0.X.0.
 
 It fixes the following issues:
-https://github.com/apache/pulsar-client-go/milestone/1?closed=1
+https://github.com/nodece/pulsar-client-go/milestone/1?closed=1
 
 Pulsar Client Go's KEYS file contains PGP keys we used to sign this release:
 https://downloads.apache.org/pulsar/KEYS
@@ -116,7 +116,7 @@ https://dist.apache.org/repos/dist/dev/pulsar/pulsar-client-go-0.X.0-candidate-1
 
 The tag to be voted upon:
 v0.X.0
-https://github.com/apache/pulsar-client-go/tree/v0.X.0-candidate-1
+https://github.com/nodece/pulsar-client-go/tree/v0.X.0-candidate-1
 
 SHA-512 checksums:
 97bb1000f70011e9a585186590e0688586590e09  apache-pulsar-client-go-0.X.0-src.tar.gz
@@ -156,9 +156,9 @@ svn rm https://dist.apache.org/repos/dist/release/pulsar/pulsar-client-go/pulsar
 
 7. Update the release note.
 
-Add the release note to [Pulsar Client Go](https://github.com/apache/pulsar-client-go/releases)
+Add the release note to [Pulsar Client Go](https://github.com/nodece/pulsar-client-go/releases)
 
-Add the release note to the [Pulsar Website](https://pulsar.apache.org/release-notes/client-go/). Here is an example PR: https://github.com/apache/pulsar-site/pull/1016
+Add the release note to the [Pulsar Website](https://pulsar.apache.org/release-notes/client-go/). Here is an example PR: https://github.com/nodece/pulsar-site/pull/1016
 
 8. Announce the release.
 
@@ -176,10 +176,10 @@ guaranteed at-least-once delivery of messages, automatic cursor management for
 subscribers, and cross-datacenter replication.
 
 For Pulsar release details and downloads, visit:
-https://github.com/apache/pulsar-client-go/releases/tag/v0.x.0
+https://github.com/nodece/pulsar-client-go/releases/tag/v0.x.0
 
 Release Notes are at:
-https://github.com/apache/pulsar-client-go/blob/master/CHANGELOG.md
+https://github.com/nodece/pulsar-client-go/blob/master/CHANGELOG.md
 
 We would like to thank the contributors that made the release possible.
 

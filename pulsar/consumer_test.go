@@ -21,6 +21,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/ory/dockertest/v3"
 	"log"
 	"net/http"
 	"os"
@@ -32,24 +33,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/admin"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/admin"
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/stretchr/testify/require"
-	"github.com/testcontainers/testcontainers-go"
-	"github.com/testcontainers/testcontainers-go/wait"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsaradmin"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/admin/config"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/admin/config"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
-
-	"github.com/apache/pulsar-client-go/pulsar/crypto"
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	plog "github.com/apache/pulsar-client-go/pulsar/log"
 	"github.com/google/uuid"
+	"github.com/nodece/pulsar-client-go/pulsar/crypto"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
+	plog "github.com/nodece/pulsar-client-go/pulsar/log"
 	"github.com/pierrec/lz4/v4"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/proto"
@@ -5313,42 +5310,11 @@ func TestAckResponseNotBlocked(t *testing.T) {
 }
 
 func TestConsumerKeepReconnectingAndThenCallClose(t *testing.T) {
-	req := testcontainers.ContainerRequest{
-		Image:        getPulsarTestImage(),
-		ExposedPorts: []string{"6650/tcp", "8080/tcp"},
-		WaitingFor:   wait.ForExposedPort(),
-		Cmd:          []string{"bin/pulsar", "standalone", "-nfw"},
+	// uses a sensible default on windows (tcp/http) and linux/osx (socket)
+	_, err := dockertest.NewPool("")
+	if err != nil {
+		log.Fatalf("Could not construct pool: %s", err)
 	}
-	c, err := testcontainers.GenericContainer(context.Background(), testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
-	})
-	require.NoError(t, err, "Failed to start the pulsar container")
-	endpoint, err := c.PortEndpoint(context.Background(), "6650", "pulsar")
-	require.NoError(t, err, "Failed to get the pulsar endpoint")
-
-	client, err := NewClient(ClientOptions{
-		URL:               endpoint,
-		ConnectionTimeout: 5 * time.Second,
-		OperationTimeout:  5 * time.Second,
-	})
-	require.NoError(t, err)
-	defer client.Close()
-
-	var testConsumer Consumer
-	require.Eventually(t, func() bool {
-		testConsumer, err = client.Subscribe(ConsumerOptions{
-			Topic:            newTopicName(),
-			Schema:           NewBytesSchema(nil),
-			SubscriptionName: "test-sub",
-		})
-		return err == nil
-	}, 30*time.Second, 1*time.Second)
-	_ = c.Terminate(context.Background())
-	require.Eventually(t, func() bool {
-		testConsumer.Close()
-		return true
-	}, 30*time.Second, 1*time.Second)
 }
 
 func TestClientVersion(t *testing.T) {

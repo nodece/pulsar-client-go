@@ -18,7 +18,7 @@
 package admin
 
 import (
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 // Clusters is admin interface for clusters management

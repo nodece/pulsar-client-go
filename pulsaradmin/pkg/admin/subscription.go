@@ -29,7 +29,7 @@ import (
 
 	"github.com/golang/protobuf/proto" //nolint:staticcheck
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 // Subscriptions is admin interface for subscriptions management
@@ -236,7 +236,7 @@ const (
 	PropertyPrefix = "X-Pulsar-Property-"
 
 	// PropertyHeader is part of the new protocol introduced in SNIP-279
-	// https://github.com/apache/pulsar/pull/20627
+	// https://github.com/nodece/pulsar/pull/20627
 	// The value is a JSON string representing the properties.
 	PropertyHeader = "X-Pulsar-Property"
 )

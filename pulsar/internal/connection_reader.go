@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"io"
 
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"google.golang.org/protobuf/proto"
 )
 
