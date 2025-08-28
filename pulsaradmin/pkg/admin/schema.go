@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 // Schema is admin interface for schema management

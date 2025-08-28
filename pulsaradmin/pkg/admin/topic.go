@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/rest"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/rest"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 // Topics is admin interface for topics management

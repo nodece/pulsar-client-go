@@ -25,13 +25,13 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 
-	"github.com/apache/pulsar-client-go/pulsar/crypto"
-	"github.com/apache/pulsar-client-go/pulsaradmin"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/admin/config"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
 	"github.com/google/uuid"
+	"github.com/nodece/pulsar-client-go/pulsar/crypto"
+	"github.com/nodece/pulsar-client-go/pulsaradmin"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/admin/config"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

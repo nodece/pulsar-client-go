@@ -21,7 +21,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 )
 
 // ReaderMessage packages Reader and Message as a struct to use.

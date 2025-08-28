@@ -22,9 +22,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal/compression"
-	"github.com/apache/pulsar-client-go/pulsar/internal/crypto"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsar/internal/compression"
+	"github.com/nodece/pulsar-client-go/pulsar/internal/crypto"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"google.golang.org/protobuf/proto"
 )
 

@@ -27,11 +27,11 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsaradmin"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/admin/config"
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsaradmin"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/admin/config"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 func TestMultiTopicConsumerReceive(t *testing.T) {

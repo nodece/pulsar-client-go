@@ -32,8 +32,8 @@ Since the `go mod` package management tool is used in this project, **Go 1.11 or
 ### Install Go on Mac OS and Linux
 
 ```bash
-$ mkdir -p $HOME/github.com/apache/
-$ cd $HOME/github.com/apache/
+$ mkdir -p $HOME/github.com/nodece/
+$ cd $HOME/github.com/nodece/
 $ git clone git@github.com:[your-github-id]/pulsar-client-go.git
 $ cd pulsar-client-go
 $ go mod download
@@ -43,16 +43,16 @@ If some libs cannot be downloaded when you enter the `go mod download` command, 
 
 ## Fork
 
-Before contributing, you need to fork [pulsar-client-go](https://github.com/apache/pulsar-client-go) to your github repository.
+Before contributing, you need to fork [pulsar-client-go](https://github.com/nodece/pulsar-client-go) to your github repository.
 
 ## Contribution flow
 
 ```bash
-$ git remote add apache git@github.com:apache/pulsar-client-go.git
+$ git remote add apache git@github.com:nodece/pulsar-client-go.git
 // sync with remote master
 $ git checkout master
 $ git fetch apache
-$ git rebase apache/master
+$ git rebase nodece/master
 $ git push origin master
 // create PR branch
 $ git checkout -b your_branch   

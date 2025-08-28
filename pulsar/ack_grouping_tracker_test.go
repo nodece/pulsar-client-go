@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"github.com/stretchr/testify/assert"
 )
 

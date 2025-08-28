@@ -21,8 +21,8 @@ import (
 	"crypto/tls"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/auth"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/nodece/pulsar-client-go/pulsar/auth"
+	"github.com/nodece/pulsar-client-go/pulsar/log"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

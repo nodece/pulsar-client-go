@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/apache/pulsar-client-go/oauth2/clock"
+	"github.com/nodece/pulsar-client-go/oauth2/clock"
 )
 
 var (

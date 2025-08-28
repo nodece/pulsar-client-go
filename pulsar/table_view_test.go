@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	pb "github.com/apache/pulsar-client-go/integration-tests/pb"
+	pb "github.com/nodece/pulsar-client-go/integration-tests/pb"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -28,17 +28,17 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/apache/pulsar-client-go/pulsar/crypto"
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	"github.com/apache/pulsar-client-go/pulsar/internal/compression"
-	cryptointernal "github.com/apache/pulsar-client-go/pulsar/internal/crypto"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsar/log"
 	"github.com/bits-and-blooms/bitset"
+	"github.com/nodece/pulsar-client-go/pulsar/crypto"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
+	"github.com/nodece/pulsar-client-go/pulsar/internal/compression"
+	cryptointernal "github.com/nodece/pulsar-client-go/pulsar/internal/crypto"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsar/log"
 	"github.com/pkg/errors"
 
 	uAtomic "go.uber.org/atomic"

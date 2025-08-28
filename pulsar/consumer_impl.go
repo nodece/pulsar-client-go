@@ -27,12 +27,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+	"github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 
-	"github.com/apache/pulsar-client-go/pulsar/crypto"
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/nodece/pulsar-client-go/pulsar/crypto"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsar/log"
 	pkgerrors "github.com/pkg/errors"
 )
 

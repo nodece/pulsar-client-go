@@ -31,19 +31,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/nodece/pulsar-client-go/pulsar/backoff"
 	"github.com/stretchr/testify/require"
 
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/nodece/pulsar-client-go/pulsar/internal"
+	pb "github.com/nodece/pulsar-client-go/pulsar/internal/pulsar_proto"
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/apache/pulsar-client-go/pulsar/crypto"
-	plog "github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/nodece/pulsar-client-go/pulsar/crypto"
+	plog "github.com/nodece/pulsar-client-go/pulsar/log"
 )
 
 func TestInvalidURL(t *testing.T) {
@@ -728,7 +728,7 @@ func TestMessageRouter(t *testing.T) {
 	assert.Equal(t, string(msg.Payload()), "hello")
 }
 func TestMessageSingleRouter(t *testing.T) {
-	// TODO: https://github.com/apache/pulsar-client-go/issues/1376
+	// TODO: https://github.com/nodece/pulsar-client-go/issues/1376
 	t.Skip("Skipping TestMessageSingleRouter because it's too flaky")
 	// Create topic with 5 partitions
 	topicAdminURL := "admin/v2/persistent/public/default/my-single-partitioned-topic/partitions"

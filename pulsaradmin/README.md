@@ -7,7 +7,7 @@ Pulsar-Admin-Go is a [Go](https://go.dev) library for [Apache Pulsar](https://pu
 Currently, many projects (e.g, [terraform-provider-pulsar](https://github.com/streamnative/terraform-provider-pulsar) and [pulsar-resources-operator](https://github.com/streamnative/pulsar-resources-operator))
 that need to manipulate the pulsar admin resources rely on the [pulsarctl](https://github.com/streamnative/pulsarctl),
 which poses challenges for dependency management and versioning as we have to release a new pulsarctl to get updates.
-So we decoupled the pulsar admin related api from pulsarctl and created the [pulsar-admin-go](https://github.com/apache/pulsar-client-go/pulsaradmin) library based on it,
+So we decoupled the pulsar admin related api from pulsarctl and created the [pulsar-admin-go](https://github.com/nodece/pulsar-client-go/pulsaradmin) library based on it,
 which also provides a clearer perspective and maintainability from an architectural perspective.
 
 ## Quickstart
@@ -18,7 +18,7 @@ which also provides a clearer perspective and maintainability from an architectu
 - pulsar-admin-go in go.mod
 
   ```shell
-  go get github.com/apache/pulsar-client-go
+  go get github.com/nodece/pulsar-client-go
   ```
 
 ### Manage pulsar tenants
@@ -27,7 +27,7 @@ which also provides a clearer perspective and maintainability from an architectu
 
 ```go
 import (
-    "github.com/apache/pulsar-client-go/pulsaradmin"
+    "github.com/nodece/pulsar-client-go/pulsaradmin"
 )
 
 func main() {
@@ -47,7 +47,7 @@ func main() {
 
 ```go
 import (
-    "github.com/apache/pulsar-client-go/pulsaradmin"
+    "github.com/nodece/pulsar-client-go/pulsaradmin"
 )
 
 func main() {
@@ -65,7 +65,7 @@ func main() {
 
 ```go
 import (
-    "github.com/apache/pulsar-client-go/pulsaradmin"
+    "github.com/nodece/pulsar-client-go/pulsaradmin"
 )
 
 func main() {
@@ -86,8 +86,8 @@ func main() {
 ```go
 
 import (
-    "github.com/apache/pulsar-client-go/pulsaradmin"
-    "github.com/apache/pulsar-client-go/pulsaradmin/pkg/utils"
+    "github.com/nodece/pulsar-client-go/pulsaradmin"
+    "github.com/nodece/pulsar-client-go/pulsaradmin/pkg/utils"
 )
 
 func main() {
