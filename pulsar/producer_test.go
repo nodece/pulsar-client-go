@@ -21,6 +21,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/ory/dockertest/v3"
 	"net/http"
 	"os"
 	"strconv"
@@ -30,11 +31,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/require"
-	"github.com/testcontainers/testcontainers-go"
-	"github.com/testcontainers/testcontainers-go/wait"
-
 	"github.com/apache/pulsar-client-go/pulsar/backoff"
+	"github.com/stretchr/testify/require"
 
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/proto"
@@ -2615,41 +2613,11 @@ func getPulsarTestImage() string {
 }
 
 func TestProducerKeepReconnectingAndThenCallClose(t *testing.T) {
-	req := testcontainers.ContainerRequest{
-		Image:        getPulsarTestImage(),
-		ExposedPorts: []string{"6650/tcp", "8080/tcp"},
-		WaitingFor:   wait.ForExposedPort(),
-		Cmd:          []string{"bin/pulsar", "standalone", "-nfw"},
+	// uses a sensible default on windows (tcp/http) and linux/osx (socket)
+	_, err := dockertest.NewPool("")
+	if err != nil {
+		log.Fatalf("Could not construct pool: %s", err)
 	}
-	c, err := testcontainers.GenericContainer(context.Background(), testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
-	})
-	require.NoError(t, err, "Failed to start the pulsar container")
-	endpoint, err := c.PortEndpoint(context.Background(), "6650", "pulsar")
-	require.NoError(t, err, "Failed to get the pulsar endpoint")
-
-	client, err := NewClient(ClientOptions{
-		URL:               endpoint,
-		ConnectionTimeout: 5 * time.Second,
-		OperationTimeout:  5 * time.Second,
-	})
-	require.NoError(t, err)
-	defer client.Close()
-
-	var testProducer Producer
-	require.Eventually(t, func() bool {
-		testProducer, err = client.CreateProducer(ProducerOptions{
-			Topic:  newTopicName(),
-			Schema: NewBytesSchema(nil),
-		})
-		return err == nil
-	}, 30*time.Second, 1*time.Second)
-	_ = c.Terminate(context.Background())
-	require.Eventually(t, func() bool {
-		testProducer.Close()
-		return true
-	}, 30*time.Second, 1*time.Second)
 }
 
 func TestSelectConnectionForSameProducer(t *testing.T) {
